@@ -1,9 +1,8 @@
-ifdef PLATFORM
-  platform-genflags-y += "-DTARGET_PLATFORM_HEADER=\"platform/$(PLATFORM)/platform.h\""
-else
-	PLATFORM = "generic"
-  platform-genflags-y += "-DTARGET_PLATFORM_HEADER=\"platform/generic/platform.h\""
+ifndef PLAT
+	PLAT=sifive/fu540
 endif
+
+platform-genflags-y += "-DTARGET_PLATFORM_HEADER=\"platform/$(PLAT)/platform.h\""
 
 platform-objs-y += ../../src/attest.o
 platform-objs-y += ../../src/cpu.o
@@ -29,9 +28,9 @@ platform-objs-y += ../../src/ed25519/sign.o
 platform-objs-y += ../../src/hkdf_sha3_512/hkdf_sha3_512.o
 platform-objs-y += ../../src/hmac_sha3/hmac_sha3.o
 
-platform-objs-y += ../../src/platform/$(PLATFORM)/platform.o
+platform-objs-y += ../../src/platform/$(PLAT)/platform.o
 
 platform-objs-y += ../../src/plugins/plugins.o
 
 platform-objs-y += platform.o
-platform-objs-y += sifive_fu540.o
+platform-objs-y += platform_override_modules.o
