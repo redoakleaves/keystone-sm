@@ -101,7 +101,7 @@ unsigned long platform_init_global_once(){
 
 
 unsigned long platform_init_global(){
-  pmp_set_keystone(l2_controller_rid, PMP_NO_PERM);
+  pmp_set_keystone(l2_controller_rid, PMP_ALL_PERM);
   pmp_set_keystone(scratch_rid, PMP_NO_PERM);
 
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
